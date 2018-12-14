@@ -1,5 +1,5 @@
 # MorseMoai
-This project enables you to build a system that communicates in morse code and both reads messages off the Web and writes data on when it was triggered.
+This project enables you to build a system that communicates in morse code and both reads messages off the Web and writes data on when it was triggered. It includes the 3D files so you can build the entire system from this.
 
 I am using an ESP32 DevKitC and this code works with it.
 
