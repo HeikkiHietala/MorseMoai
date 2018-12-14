@@ -61,7 +61,7 @@ try:
       return True 
       
     
-    def getDist():
+    def getDist(): #this function gets the distance from the sensor
       distance = sensor.distance_cm()
       if (distance < 50):
         return True
@@ -69,7 +69,7 @@ try:
         sleep_ms(1000)
         return False
     
-    def mySendToCode(myLineToCode):
+    def mySendToCode(myLineToCode): #this function finds the morse  
         for x in myLineToCode:
           if (x != "\n"):
             if (x == " "):
