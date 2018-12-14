@@ -69,7 +69,7 @@ try:
         sleep_ms(1000)
         return False
     
-    def mySendToCode(myLineToCode): #this function finds the morse  
+    def mySendToCode(myLineToCode): #this function finds the morse code to play and goes to myMorseAction with it
         for x in myLineToCode:
           if (x != "\n"):
             if (x == " "):
@@ -84,7 +84,7 @@ try:
               myMorseAction(z,myMorseList[myIndex])
               sleep_ms(6* myDelay)
     
-    def myMorseAction(myCharToShow,myCode):
+    def myMorseAction(myCharToShow,myCode): #this function plays the actual morse code and shows the plaintext on the LCD
       for myCharToPlay in myCode:
         lcd.move_to(0, 3)
         myMorseToShow = myCharToShow + " = " + myCode + "     "
@@ -101,7 +101,7 @@ try:
           elif (x== "S"):
             sleep_ms(4*myDelay)
     
-    def myPlaySound(length):
+    def myPlaySound(length): #this function plays sound and lights LEDs
       p5=Pin(5)                    #create music object from pin5
       pwm5=PWM(p5)
       pwm5.duty(5000)
@@ -111,7 +111,7 @@ try:
       pwm5.deinit()
       led.value(0)
       
-    def getURLMessage():
+    def getURLMessage(): #this function gets the Web message, or if none available, acts on the prerecorded ones
         try:
             response = urequests.get(url)
             if len(response.content) > 3:
@@ -161,13 +161,13 @@ try:
             jsonObj = json.dumps(data)
             resp = urequests.post(url, data=jsonObj, headers=headers)
             vastaus = myNetMsg
-          chary=0    
+          chary=0 #this sets the line to the top on the LCD   
           for line in vastaus:
             lcd.move_to(0, chary)
-            lcd.putstr(line)
+            lcd.putstr(line) # display each line of the messge
             chary = chary + 1
           for line in vastaus:    
-             mySendToCode(line)
+             mySendToCode(line) # handle the morse operations for each line
           else:
             sleep_ms(100)  
         lcd.clear()
@@ -177,7 +177,7 @@ try:
     
     main()
 
-except Exception as e:
+except Exception as e: #error handling
     url = "insert_your_upload_handler_here"
     headers = {'content-type': 'application/json'}
     data = {'message': 'Crashed', "crash":str(e)}
